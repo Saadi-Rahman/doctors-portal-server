@@ -47,6 +47,14 @@ async function run(){
      * app.delete('/bookings/:id')
      */
 
+    app.get('/bookings', async(req, res) =>{
+      const email = req.query.email;
+      console.log(email);
+      const query = { email: email };
+      const bookings = await bookingsCollection.find(query).toArray();
+      res.send(bookings);
+    })
+
     app.post('/bookings', async(req, res) =>{
       const booking = req.body;
       console.log(booking);
